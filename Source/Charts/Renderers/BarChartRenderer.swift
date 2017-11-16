@@ -221,7 +221,12 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
         let borderWidth = dataSet.barBorderWidth
         let borderColor = dataSet.barBorderColor
         let drawBorder = borderWidth > 0.0
-        
+
+        let dashLengths = dataSet.dashLengths
+        let dashWidth = dataSet.dashWidth
+        let dashColor = dataSet.dashColor
+        let drawDash = dashLengths != nil
+
         context.saveGState()
         
         // draw the bar shadow before the values
@@ -324,6 +329,12 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 context.setLineWidth(borderWidth)
                 context.stroke(barRect)
             }
+
+            if drawDash {
+                context.setLineWidth(dashWidth)
+                context.setLineDash(phase: 0, lengths: dashLengths!)
+            }
+
         }
         
         context.restoreGState()
