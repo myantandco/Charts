@@ -15,6 +15,7 @@ import CoreGraphics
 
 open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDataSet
 {
+
     fileprivate func initialize()
     {
         self.highlightColor = NSUIColor.black
@@ -162,4 +163,11 @@ open class BarChartDataSet: BarLineScatterCandleBubbleChartDataSet, IBarChartDat
         copy.highlightAlpha = highlightAlpha
         return copy
     }
+
+    public var barBorderDashWidth: CGFloat = 0
+
+    public var barBorderDashColor: NSUIColor = .black
+
+    public var barBorderDashLengths: [CGFloat] = []
+
 }
