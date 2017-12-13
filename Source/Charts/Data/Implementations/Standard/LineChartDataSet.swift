@@ -129,6 +129,7 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         return circleColors[index]
     }
     
+    
     /// Sets the one and ONLY color that should be used for this DataSet.
     /// Internally, this recreates the colors array and adds the specified color.
     open func setCircleColor(_ color: NSUIColor)
@@ -163,6 +164,13 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
     
     /// - returns: `true` if drawing the circle-holes is enabled, `false` ifnot.
     open var isDrawCircleHoleEnabled: Bool { return drawCircleHoleEnabled }
+
+    /// If true, gradient lines are drawn instead of solid
+    open var drawGradientEnabled = false
+
+    /// - returns: `true` if drawing gradient lines is enabled, false if not.
+    open var isDrawGradientEnabled: Bool { return drawGradientEnabled }
+
     
     /// This is how much (in pixels) into the dash pattern are we starting from.
     open var lineDashPhase = CGFloat(0.0)
@@ -171,7 +179,11 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
     /// I.e. [2, 3] will paint [--   --   ]
     /// [1, 3, 4, 2] will paint [-   ----  -   ----  ]
     open var lineDashLengths: [CGFloat]?
-    
+
+    /// This is the points where gradient should change color
+    open var gradientPositions: [CGFloat]?
+
+
     /// Line cap type, default is CGLineCap.Butt
     open var lineCapType = CGLineCap.butt
     
@@ -204,6 +216,7 @@ open class LineChartDataSet: LineRadarChartDataSet, ILineChartDataSet
         copy.lineCapType = lineCapType
         copy.drawCirclesEnabled = drawCirclesEnabled
         copy.drawCircleHoleEnabled = drawCircleHoleEnabled
+        copy.drawGradientEnabled = drawGradientEnabled
         copy.mode = mode
         return copy
     }

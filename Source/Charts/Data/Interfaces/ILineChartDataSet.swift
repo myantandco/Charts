@@ -42,6 +42,12 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     @available(*, deprecated: 1.0, message: "Use `mode` instead.")
     var isDrawSteppedEnabled: Bool { get }
 
+    /// If true, gradient lines are drawn instead of solid
+    var drawGradientEnabled: Bool { get set }
+
+    /// - returns: true if drawing gradeint lines is enabled, false if not.
+    var isDrawGradientEnabled: Bool { get }
+
     /// The radius of the drawn circles.
     var circleRadius: CGFloat { get set }
     
@@ -86,7 +92,10 @@ public protocol ILineChartDataSet: ILineRadarChartDataSet
     
     /// Line cap type, default is CGLineCap.Butt
     var lineCapType: CGLineCap { get set }
-    
+
+    /// This is the points where gradient should change color
+    var gradientPositions: [CGFloat]? { get set }
+
     /// Sets a custom IFillFormatter to the chart that handles the position of the filled-line for each DataSet. Set this to null to use the default logic.
     var fillFormatter: IFillFormatter? { get set }
 }
