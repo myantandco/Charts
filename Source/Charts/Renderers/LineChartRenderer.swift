@@ -453,7 +453,6 @@ open class LineChartRenderer: LineRadarRenderer
                 from: _xBounds.min,
                 to: _xBounds.max,
                 matrix: trans.valueToPixelMatrix)
-
             drawGradientLine(context: context, dataSet: dataSet, spline: path, matrix: valueToPixelMatrix)
         }
         context.restoreGState()
@@ -793,9 +792,13 @@ open class LineChartRenderer: LineRadarRenderer
 
         context.drawPath(using: .stroke)
 
-        let boundingBox = gradientPath.boundingBox;
-        let gradientStart = CGPoint(x: 0, y: boundingBox.maxY);
-        let gradientEnd   = CGPoint(x: 0, y: boundingBox.minY);
+//        let boundingBox = gradientPath.boundingBox;
+//        let gradientStart = CGPoint(x: 0, y: boundingBox.maxY);
+//        let gradientEnd   = CGPoint(x: 0, y: boundingBox.0);
+
+        let gradientStart = CGPoint(x: 0, y: self.viewPortHandler!.chartHeight)
+        let gradientEnd   = CGPoint(x: 0, y: 0)
+        
         var gradientLocations : [CGFloat] = []
         var gradientColors : [CGFloat] = []
         var cRed : CGFloat = 0
