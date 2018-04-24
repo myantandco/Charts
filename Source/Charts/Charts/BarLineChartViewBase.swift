@@ -609,7 +609,10 @@ open class BarLineChartViewBase: ChartViewBase, BarLineScatterCandleBubbleChartD
             if _isScaling
             {
                 _isScaling = false
-                
+                let scaleX = recognizer.nsuiScale
+                let scaleY = recognizer.nsuiScale
+
+                delegate?.chartFinishedScaling?(self, scaleX: scaleX, scaleY: scaleY)
                 // Range might have changed, which means that Y-axis labels could have changed in size, affecting Y-axis size. So we need to recalculate offsets.
                 calculateOffsets()
                 setNeedsDisplay()
